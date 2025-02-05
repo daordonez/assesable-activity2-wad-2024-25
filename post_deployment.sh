@@ -26,7 +26,7 @@ cd "$REPO_DIR/scripts"
 echo "Cargando variables de entorno"
 source ./initialize_env.sh
 echo "Configurando Apache..."
-sudo bash ./apache_setup.sh
+sudo -E bash ./apache_setup.sh
 
 # Ejecutar el script remoto de instalación (deploy_ssl_handler.sh)
 echo "Ejecutando script de instalación (deploy_ssl_handler.sh)..."
