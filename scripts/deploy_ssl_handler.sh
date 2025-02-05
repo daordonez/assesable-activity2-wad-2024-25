@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# Cargar las variables de entorno desde el archivo .env
-if [ -f .env ]; then
-    export $(cat .env | xargs)
-else
-    echo "No se encontró el archivo .env. Asegúrate de que esté en el directorio correcto."
-    exit 1
-fi
+#Proxy configuration
+PROXY_NAME=$(yq e '.proxy.name' $deployment_file)
+PROXY_NET=$(yq e '.proxy.network' $deployment_file)
+PROXY_WEB_PORT=$(yq e '.proxy.port_web' $deployment_file)
+PROXY_SSL_PORT=$(yq e '.proxy.port_ssl' $deployment_file)
+PROXY_ADM_PORT=$(yq e '.proxy.port_admin' $deployment_file)
 
 # Verificar que Docker está instalado
 if ! command -v docker &>/dev/null; then
