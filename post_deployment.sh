@@ -22,7 +22,7 @@ fi
 cd "$REPO_DIR/scripts"
 
 #Configurar servicios instalados
-# Apache
+# Apache configuration
 echo "Configurando Apache..."
 sudo -E bash ./apache_setup.sh
 
