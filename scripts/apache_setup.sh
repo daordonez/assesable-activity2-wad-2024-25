@@ -1,21 +1,5 @@
 #!/bin/bash
 
-# Obtener la ruta absoluta del directorio donde se encuentra el script
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
-
-# Ruta al archivo .env dentro del repositorio
-REPO_DIR="$SCRIPT_DIR/assesable-activity2-wad-2024-25"
-ENV_FILE="$REPO_DIR/scripts/.env"
-
-# Cargar las variables del archivo .env
-if [ -f "$ENV_FILE" ]; then
-    set -a
-    source "$ENV_FILE"
-    set +a
-else
-    echo "No se encontró el archivo .env en la ruta: $ENV_FILE"
-    exit 1
-fi
 
 # Crear el archivo ports.conf con los valores del .env
 cat <<EOL > /etc/apache2/ports.conf
