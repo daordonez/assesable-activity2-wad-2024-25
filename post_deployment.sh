@@ -30,7 +30,6 @@ sudo bash ./apache_setup.sh
 
 # Ejecutar el script remoto de instalación (deploy_ssl_handler.sh)
 echo "Ejecutando script de instalación (deploy_ssl_handler.sh)..."
-chmod +x deploy_ssl_handler
-./deploy_ssl_handler.sh
+sudo bash ./deploy_ssl_handler.sh
 
 echo "Proceso completado con éxito."
