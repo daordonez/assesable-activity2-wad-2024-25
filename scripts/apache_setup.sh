@@ -2,21 +2,20 @@
 
 
 # Crear el archivo ports.conf con los valores del .env
-cat <<EOL > /tmp/ports.conf
-# If you just change the port or add more ports here...
+echo -e "# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
 
 Listen $APACHE_PORT_WEB
 
 <IfModule ssl_module>
-        Listen $APACHE_PORT_SSL
+Listen $APACHE_PORT_SSL
 </IfModule>
 
 <IfModule mod_gnutls.c>
-        Listen $APACHE_PORT_SSL
+Listen $APACHE_PORT_SSL
 </IfModule>
-EOL
-
-sudo mv /tmp/ports.conf /etc/apache2/ports.conf
+" | sudo tee /etc/apache2/ports.conf > /dev/null
 
 
 cat /etc/apache2/ports.conf
