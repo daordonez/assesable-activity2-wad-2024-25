@@ -18,6 +18,7 @@ Listen $APACHE_PORT_WEB
 </IfModule>
 EOL
 
+cat /etc/apache2/ports.conf
 
 # Verifica que el archivo ha sido generado correctamente
 echo "El archivo ports.conf ha sido generado con los puertos $APACHE_PORT_WEB y $APACHE_PORT_SSL"
