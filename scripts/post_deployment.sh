@@ -16,6 +16,7 @@ else
 fi
 
 # Mover a la ruta /assesable-activity2-wad-2024-25/scripts
+echo "Moviendo a la ruta /assesable-activity2-wad-2024-25/scripts..."
 cd /assesable-activity2-wad-2024-25/scripts
 
 # Ejecutar el script remoto de instalación (deploy_ssl_handler.sh)
