@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Proxy configuration
+deployment_file="00_deployment.yaml"
 PROXY_NAME=$(yq e '.proxy.name' $deployment_file)
 PROXY_NET=$(yq e '.proxy.network' $deployment_file)
 PROXY_WEB_PORT=$(yq e '.proxy.port_web' $deployment_file)
