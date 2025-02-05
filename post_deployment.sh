@@ -33,6 +33,6 @@ sudo bash ./deploy_ssl_handler.sh
 
 echo "Configurando aplicación React"
 react_app="$REPO_DIR/app/web_server"
-sudo source "$react_app/react_app.sh" "$REPO_DIR"
+sudo bash "$react_app/react_app.sh" "$REPO_DIR"
 
 echo "Proceso completado con éxito."
