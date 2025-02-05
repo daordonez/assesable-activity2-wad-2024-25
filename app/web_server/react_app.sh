@@ -70,7 +70,15 @@ sudo systemctl restart apache2
 # Confirmar que Apache ha sido reiniciado
 if systemctl is-active --quiet apache2; then
     echo "Apache se ha reiniciado correctamente."
+    echo "Configuración de Apache completada"
 else
     echo "Hubo un problema al reiniciar Apache."
     exit 1
 fi
+
+echo "Configurando aplicación React con pm2..."
+sudo npm install -g pm2
+pm2 start "$APP_DIR/server.js" --name adivina-el-numero
+pm2 startup
+pm2 save
+echo "Aplicación levantada con pm2"
