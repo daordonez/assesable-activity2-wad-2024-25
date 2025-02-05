@@ -24,7 +24,7 @@ cd "$REPO_DIR/scripts"
 #Configurar servicios instalados
 # Apache
 echo "Cargando variables de entorno"
-bash ./initialize_env.sh
+source ./initialize_env.sh
 echo "Configurando Apache..."
 sudo bash ./apache_setup.sh
 
