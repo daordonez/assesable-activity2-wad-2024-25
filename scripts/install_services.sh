@@ -14,7 +14,7 @@ sudo apt install -y apache2
 
 # Instalar Node.js y npm desde NodeSource
 echo "Instalando Node.js y npm..."
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # Instalar PM2 globalmente
