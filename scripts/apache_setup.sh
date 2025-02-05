@@ -3,8 +3,8 @@
 deployment_file="00_deployment.yaml"
 
 #Apache
-export APACHE_PORT_WEB=$(yq e '.apache.port_web' $deployment_file)
-export APACHE_PORT_SSL=$(yq e '.apache.port_ssl' $deployment_file)
+APACHE_PORT_WEB=$(yq e '.apache.port_web' $deployment_file)
+APACHE_PORT_SSL=$(yq e '.apache.port_ssl' $deployment_file)
 
 
 # Crear el archivo ports.conf con los valores del .env
