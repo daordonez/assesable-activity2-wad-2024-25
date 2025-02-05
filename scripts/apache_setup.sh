@@ -2,7 +2,7 @@
 
 
 # Crear el archivo ports.conf con los valores del .env
-sudo cat <<EOL > /etc/apache2/ports.conf
+sudo tee /etc/apache2/ports.conf > /dev/null <<EOL
 # If you just change the port or add more ports here, you will likely also
 # have to change the VirtualHost statement in
 # /etc/apache2/sites-enabled/000-default.conf
@@ -17,6 +17,7 @@ Listen $APACHE_PORT_WEB
         Listen $APACHE_PORT_SSL
 </IfModule>
 EOL
+
 
 # Verifica que el archivo ha sido generado correctamente
 echo "El archivo ports.conf ha sido generado con los puertos $APACHE_PORT_WEB y $APACHE_PORT_SSL"
