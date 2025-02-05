@@ -44,6 +44,25 @@ else
     echo "PM2 ya está instalado. Versión: $(pm2 -v)"
 fi
 
+# Instalar Docker si no está instalado
+if ! command -v docker &>/dev/null; then
+    echo "Instalando Docker..."
+    sudo apt-get update
+    sudo apt-get install -y ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    echo "Docker instalado correctamente. Ejecutando prueba..."
+    sudo docker run hello-world
+else
+    echo "Docker ya está instalado. Versión: $(docker --version)"
+fi
+
 # Verificar versiones instaladas
 echo "\nVerificaciones:"
 echo "Git: $(git --version)"
@@ -51,5 +70,6 @@ echo "Apache: $(apache2 -v | head -n 1)"
 echo "Node.js: $(node -v)"
 echo "npm: $(npm -v)"
 echo "PM2: $(pm2 -v)"
+echo "Docker: $(docker --version)"
 
 echo "Instalación completada con éxito."
