@@ -1,5 +1,11 @@
 #!/bin/bash
 
+deployment_file="00_deployment.yaml"
+
+#Apache
+export APACHE_PORT_WEB=$(yq e '.apache.port_web' $deployment_file)
+export APACHE_PORT_SSL=$(yq e '.apache.port_ssl' $deployment_file)
+
 
 # Crear el archivo ports.conf con los valores del .env
 echo -e "# If you just change the port or add more ports here, you will likely also
