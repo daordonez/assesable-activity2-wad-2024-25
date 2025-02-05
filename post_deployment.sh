@@ -24,11 +24,9 @@ cd "$REPO_DIR/scripts"
 #Configurar servicios instalados
 # Apache
 echo "Cargando variables de entorno"
-chmod +x initialize_env.sh
-./initialize_env.sh
+bash ./initialize_env.sh
 echo "Configurando Apache..."
-chmod +x apache_setup.sh
-./apache_setup.sh
+bash ./apache_setup.sh
 
 # Ejecutar el script remoto de instalación (deploy_ssl_handler.sh)
 echo "Ejecutando script de instalación (deploy_ssl_handler.sh)..."
