@@ -1,4 +1,4 @@
-deployment_file="deployment.yaml"
+deployment_file="00_deployment.yaml"
 
 echo "Inicializando variables de entorno..."
 
