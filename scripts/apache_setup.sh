@@ -23,7 +23,7 @@ echo "El archivo ports.conf ha sido generado con los puertos $APACHE_PORT_WEB y 
 
 # Reiniciar Apache para aplicar los cambios
 echo "Reiniciando Apache para aplicar la nueva configuración..."
-systemctl restart apache2
+sudo systemctl restart apache2
 
 # Confirmar que Apache ha sido reiniciado
 if systemctl is-active --quiet apache2; then
