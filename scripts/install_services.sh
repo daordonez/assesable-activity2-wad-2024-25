@@ -63,6 +63,17 @@ else
     echo "Docker ya está instalado. Versión: $(docker --version)"
 fi
 
+# Instalar yq si no está instalado
+if ! command -v yq &>/dev/null; then
+    echo "Instalando yq..."
+    sudo apt update -y
+    sudo apt install -y jq
+    sudo wget https://github.com/mikefarah/yq/releases/download/v4.16.1/yq_linux_amd64 -O /usr/local/bin/yq
+    sudo chmod +x /usr/local/bin/yq
+else
+    echo "yq ya está instalado. Versión: $(yq --version)"
+fi
+
 # Verificar versiones instaladas
 echo "\nVerificaciones:"
 echo "Git: $(git --version)"
@@ -71,5 +82,6 @@ echo "Node.js: $(node -v)"
 echo "npm: $(npm -v)"
 echo "PM2: $(pm2 -v)"
 echo "Docker: $(docker --version)"
+echo "yq: $(yq --version)"
 
 echo "Instalación completada con éxito."

@@ -1,0 +1,10 @@
+proxy:
+  name: npm-proxy
+  network: proxy
+  port_web: 80
+  port_ssl: 443
+  port_admin: 81
+
+apache:
+  port_web: 8080
+  port_ssl: 8443
