@@ -44,6 +44,9 @@ sudo cp -r "$path_app/build" $DocumentRoot
 #it copies the content on: /etc/apache2/sites-available/file.conf
 virtual_directory="$apache_app_path/$APP_NAME.conf"
 
+####################################
+# VIRTUAL DIRECTORY APP
+####################################
 echo -e "VirtualHost *:$APP_PORT>
     ServerAdmin $APP_ADMIN
     DocumentRoot $DocumentRoot
@@ -57,6 +60,7 @@ echo -e "VirtualHost *:$APP_PORT>
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>" | sudo tee $virtual_directory > /dev/null
+####################################
 
 cat $virtual_directory
 
