@@ -66,6 +66,10 @@ echo -e "<VirtualHost *:$APP_PORT>
 
 cat $virtual_directory
 
+#Habilitar puerto para este sitio
+echo "Listen $APP_PORT" | sudo tee -a /etc/apache2/ports.conf > /dev/null
+#habilitar el sitio
+sudo a2ensite "$APP_NAME.conf"
 #Reiniciar apache
 sudo systemctl restart apache2
 
