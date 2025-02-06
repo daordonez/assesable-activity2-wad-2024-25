@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Obtener la ruta del directorio donde se está ejecutando el script
+# get the directory of the script
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Ejecutar el script remoto de instalación (install_services.sh)
+# Run Install Services script
 echo "Ejecutando script remoto de instalación (install_services.sh)..."
 curl -sL https://raw.githubusercontent.com/daordonez/assesable-activity2-wad-2024-25/refs/heads/main/scripts/install_services.sh | bash
 
@@ -18,15 +18,15 @@ else
     cd "$REPO_DIR"
 fi
 
-# Mover a la ruta relativa scripts dentro del repositorio
+# Move to scripts directory
 cd "$REPO_DIR/scripts"
 
-#Configurar servicios instalados
+
 # Apache configuration
 echo "Configurando Apache..."
 sudo -E bash ./apache_setup.sh
 
-# Ejecutar el script remoto de instalación (deploy_ssl_handler.sh)
+# execute the script to deploy the SSL handler
 echo "Ejecutando script de instalación (deploy_ssl_handler.sh)..."
 sudo bash ./deploy_ssl_handler.sh
 
