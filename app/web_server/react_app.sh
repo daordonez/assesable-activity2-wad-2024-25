@@ -21,7 +21,7 @@ APP_DOMAIN=$(yq e '.app.fqdn' $deployment_file)
 APP_ADMIN=$(yq e '.app.admin' $deployment_file)
 APP_DOCUMENT_ROOT=$(yq e '.app.document_root' $deployment_file)
 #this defines the path: /var/www/html/app_name used by apache to serve the app (virtualdirectory)
-DocumentRoot="$APP_DOCUMENT_ROOT/$APP_NAME/"
+DocumentRoot="$APP_DOCUMENT_ROOT/$APP_NAME"
 
 
 #REACT APP
@@ -36,7 +36,7 @@ npm install
 echo "Construyendo la aplicación React..."
 npm run build
 
-sudo cp -r "$path_app/build" $DocumentRoot
+sudo cp -r "$path_app/dist" $DocumentRoot
 
 ################
 
@@ -47,7 +47,9 @@ virtual_directory="$apache_app_path/$APP_NAME.conf"
 ####################################
 # VIRTUAL DIRECTORY APP
 ####################################
-echo -e "VirtualHost *:$APP_PORT>
+echo -e "<VirtualHost *:$APP_PORT>
+    
+    ServerName $APP_DOMAIN
     ServerAdmin $APP_ADMIN
     DocumentRoot $DocumentRoot
 
@@ -57,8 +59,8 @@ echo -e "VirtualHost *:$APP_PORT>
         Require all granted
     </Directory>
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>" | sudo tee $virtual_directory > /dev/null
 ####################################
 
@@ -78,7 +80,7 @@ fi
 
 echo "Configurando aplicación React con pm2..."
 sudo npm install -g pm2
-pm2 start "$APP_DIR/server.js" --name adivina-el-numero
+pm2 start "$DocumentRoot/index.html" --name adivina-el-numero
 pm2 startup
 pm2 save
 echo "Aplicación levantada con pm2"
