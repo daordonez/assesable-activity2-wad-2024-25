@@ -83,8 +83,16 @@ else
 fi
 
 echo "Configurando aplicación React con pm2..."
-sudo npm install -g pm2
-pm2 start "$DocumentRoot/index.html" --name adivina-el-numero
+
+#Comprobar si el proceso ya esta en ejecución
+if pm2 list | grep -q $APP_NAME; then
+    echo "El proceso '$APP_NAME' ya está en ejecución. Reiniciando..."
+    pm2 delete $APP_NAME
+else
+    echo "Iniciando el proceso '$APP_NAME'..."
+fi
+
+pm2 start "$DocumentRoot/index.html" --name $APP_NAME
 pm2 startup
 pm2 save
 echo "Aplicación levantada con pm2"
