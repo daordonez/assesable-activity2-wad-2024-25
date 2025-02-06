@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# Verificar si se ha proporcionado un argumento
+# verify wheter if requried param is provided
 if [ -z "$1" ]; then
   echo "Por favor, proporciona un path como parámetro."
   exit 1
 fi
 
-# Asignar el parámetro al path
+# Assign given param
 base_path=$1
 path_scripts="$base_path/scripts"
 
 
-#cargar variables desde el archivo .yaml
+#Load admin conf .yaml
 deployment_file="$path_scripts/00_deployment.yaml"
 apache_app_path="/etc/apache2/sites-available"
 
@@ -23,9 +23,9 @@ APP_DOCUMENT_ROOT=$(yq e '.app.document_root' $deployment_file)
 #this defines the path: /var/www/html/app_name used by apache to serve the app (virtualdirectory)
 DocumentRoot="$APP_DOCUMENT_ROOT/$APP_NAME"
 
-
-#REACT APP
-
+####################################
+#REACT APP BUILD & DEPLOYMENT
+####################################
 path_app="$1/app/$APP_NAME"
 
 cd $path_app
@@ -38,9 +38,9 @@ npm run build
 
 sudo cp -r "$path_app/dist" $DocumentRoot
 
-################
+####################################
 
-#generar fichero de configuración de apache
+#Generating apache virtual directory conf file
 #it copies the content on: /etc/apache2/sites-available/file.conf
 virtual_directory="$apache_app_path/$APP_NAME.conf"
 
@@ -66,14 +66,14 @@ echo -e "<VirtualHost *:$APP_PORT>
 
 cat $virtual_directory
 
-#Habilitar puerto para este sitio
+#Enabling App port
 echo "Listen $APP_PORT" | sudo tee -a /etc/apache2/ports.conf > /dev/null
-#habilitar el sitio
+#Enabling the virtual directory
 sudo a2ensite "$APP_NAME.conf"
-#Reiniciar apache
+#Apache restart
 sudo systemctl restart apache2
 
-# Confirmar que Apache ha sido reiniciado
+# Confirm apache restart
 if systemctl is-active --quiet apache2; then
     echo "Apache se ha reiniciado correctamente."
     echo "Configuración de Apache completada"
@@ -84,7 +84,7 @@ fi
 
 echo "Configurando aplicación React con pm2..."
 
-#Comprobar si el proceso ya esta en ejecución
+#Enable pm2 to start on boot
 if pm2 list | grep -q $APP_NAME; then
     echo "El proceso '$APP_NAME' ya está en ejecución. Reiniciando..."
     pm2 delete $APP_NAME
