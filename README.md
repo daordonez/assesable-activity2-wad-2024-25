@@ -20,3 +20,4 @@ To Install, configure and deploy, once you have been deployed your AWS EC2 insta
 
 1. Connect to your EC2 instance using your public IP and the generated privated key ``ssh -i "<YOUR_KEY_NAME>.pem" ubuntu@<YOUR_PUBLIC_IP>``
 2. Execute the following command:``curl -sL https://raw.githubusercontent.com/daordonez/assesable-activity2-wad-2024-25/refs/heads/main/post_deployment.sh | bash``
+3. Go to your public domaind defined on your ```00_deployment.yaml``` configuration file
