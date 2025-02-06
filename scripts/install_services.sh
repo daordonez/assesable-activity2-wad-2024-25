@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Función para comprobar si un paquete está instalado
+# test if a package is installed
 test_installed() {
     dpkg -l | grep -q "^ii  $1 "
 }
 
-# Actualizar lista de paquetes y actualizar sistema
+# Update system
 echo "Actualizando sistema..."
 sudo apt update -y && sudo apt upgrade -y
 
-# Instalar Git si no está instalado
+# Install git if not installed
 if ! test_installed git; then
     echo "Instalando Git..."
     sudo apt install -y git
@@ -17,7 +17,7 @@ else
     echo "Git ya está instalado. Versión: $(git --version)"
 fi
 
-# Instalar Apache si no está instalado
+# Install Apache if not installed
 if ! test_installed apache2; then
     echo "Instalando Apache..."
     sudo apt install -y apache2
@@ -25,7 +25,7 @@ else
     echo "Apache ya está instalado. Versión: $(apache2 -v | head -n 1)"
 fi
 
-# Instalar Node.js y npm si no están instalados o si la versión no es la correcta
+# Verify Node installation, install if not installed
 NODE_VERSION="v22.0.0"
 if ! command -v node &>/dev/null || [[ $(node -v) != "$NODE_VERSION" ]]; then
     echo "Instalando Node.js y npm..."
@@ -35,7 +35,7 @@ else
     echo "Node.js ya está instalado. Versión: $(node -v)"
 fi
 
-# Instalar PM2 si no está instalado
+# Install PM2 if not installed
 test_pm2_installed=$(npm list -g pm2 | grep pm2)
 if [ -z "$test_pm2_installed" ]; then
     echo "Instalando PM2..."
@@ -44,7 +44,7 @@ else
     echo "PM2 ya está instalado. Versión: $(pm2 -v)"
 fi
 
-# Instalar Docker si no está instalado
+# Install Docker if not installed
 if ! command -v docker &>/dev/null; then
     echo "Instalando Docker..."
     sudo apt-get update
@@ -63,7 +63,7 @@ else
     echo "Docker ya está instalado. Versión: $(docker --version)"
 fi
 
-# Instalar yq si no está instalado
+# Install yq if not installed
 if ! command -v yq &>/dev/null; then
     echo "Instalando yq..."
     sudo apt update -y
@@ -74,7 +74,7 @@ else
     echo "yq ya está instalado. Versión: $(yq --version)"
 fi
 
-# Verificar versiones instaladas
+# Verify installation
 echo "\nVerificaciones:"
 echo "Git: $(git --version)"
 echo "Apache: $(apache2 -v | head -n 1)"

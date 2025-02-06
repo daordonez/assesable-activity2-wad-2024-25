@@ -7,7 +7,7 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 echo "Ejecutando script remoto de instalación (install_services.sh)..."
 curl -sL https://raw.githubusercontent.com/daordonez/assesable-activity2-wad-2024-25/refs/heads/main/scripts/install_services.sh | bash
 
-# Verificar si el repositorio ya existe
+# Verify and clone if repository doesn't exist
 REPO_DIR="$SCRIPT_DIR/assesable-activity2-wad-2024-25"
 if [ -d "$REPO_DIR" ]; then
     echo "El repositorio ya existe. Actualizando con 'git pull'..."

@@ -82,9 +82,12 @@ else
     exit 1
 fi
 
+
 echo "Configurando aplicación React con pm2..."
 
-#Enable pm2 to start on boot
+####################################
+# PM2 CONFIGURATION
+####################################
 if pm2 list | grep -q $APP_NAME; then
     echo "El proceso '$APP_NAME' ya está en ejecución. Reiniciando..."
     pm2 delete $APP_NAME
