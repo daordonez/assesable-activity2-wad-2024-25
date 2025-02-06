@@ -14,5 +14,5 @@ app:
   port: 8000
   fqdn: wad2425-act02.diegordonez.com
   path: /assesable-activity2-wad-2024-25/app/adivina-el-numero
-  admin: user@domain.tld
+  admin: hello@diegordonez.com
   document_root: /var/www/html

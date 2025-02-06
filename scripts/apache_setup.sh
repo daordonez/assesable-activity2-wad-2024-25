@@ -2,7 +2,7 @@
 
 deployment_file="00_deployment.yaml"
 
-#Apache
+#Apache variables
 APACHE_PORT_WEB=$(yq e '.apache.port_web' $deployment_file)
 APACHE_PORT_SSL=$(yq e '.apache.port_ssl' $deployment_file)
 
