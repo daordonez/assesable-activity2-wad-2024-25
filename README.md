@@ -1,4 +1,4 @@
-# assesable-activity2-wad-2024-25
+# assesable-activity2-wad-2024-25 - Diego Ordoñez
 
 # EC2 instace deployment
 To deploy your EC2 AWS instance, you should have a valid subscription and a valid roles to create new resources in at least one region. For this activity, a training lab using awsacademy.instructure.com has been used.
