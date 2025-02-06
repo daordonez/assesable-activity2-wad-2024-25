@@ -39,6 +39,8 @@ npm run build
 sudo cp -r "$path_app/dist" $DocumentRoot
 
 ####################################
+# APACHE CONFIGURATION
+####################################
 
 #Generating apache virtual directory conf file
 #it copies the content on: /etc/apache2/sites-available/file.conf
@@ -66,7 +68,7 @@ echo -e "<VirtualHost *:$APP_PORT>
 
 cat $virtual_directory
 
-#Enabling App port
+
 echo "Listen $APP_PORT" | sudo tee -a /etc/apache2/ports.conf > /dev/null
 #Enabling the virtual directory
 sudo a2ensite "$APP_NAME.conf"
