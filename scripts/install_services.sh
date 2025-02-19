@@ -25,6 +25,15 @@ else
     echo "Apache ya está instalado. Versión: $(apache2 -v | head -n 1)"
 fi
 
+# Install PHP, libapache2-mod-php, and php-mysql if not installed
+if ! test_installed php || ! test_installed libapache2-mod-php || ! test_installed php-mysql; then
+    echo "Instalando PHP, libapache2-mod-php y php-mysql..."
+    sudo apt install -y php libapache2-mod-php php-mysql
+else
+    echo "PHP, libapache2-mod-php y php-mysql ya están instalados."
+    echo "PHP versión: $(php -v | head -n 1)"
+fi
+
 # Verify Node installation, install if not installed
 NODE_VERSION="v22.0.0"
 if ! command -v node &>/dev/null || [[ $(node -v) != "$NODE_VERSION" ]]; then
@@ -82,6 +91,7 @@ fi
 echo "\nVerificaciones:"
 echo "Git: $(git --version)"
 echo "Apache: $(apache2 -v | head -n 1)"
+echo "PHP: $(php -v | head -n 1)"
 echo "Node.js: $(node -v)"
 echo "npm: $(npm -v)"
 echo "PM2: $(pm2 -v)"
