@@ -47,8 +47,8 @@ fi
 # Install Docker if not installed
 if ! command -v docker &>/dev/null; then
     echo "Instalando Docker..."
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
+    curl -fsSL https://get.docker.com | sudo sh
+    sudo usermod -aG docker $USER
     echo "Docker instalado correctamente. Ejecutando prueba..."
     sudo docker run hello-world
 else
